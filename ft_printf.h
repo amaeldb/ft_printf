@@ -15,8 +15,17 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-#include <stdarg.h>
+# include <stdarg.h>
 
 int	ft_printf(const char *, ...);
+int	to_base(long unsigned int i, char *base, unsigned int size);
+int	conv_c(int par);
+int     conv_s(char *par);
+int     conv_p(long unsigned int par, char *base);
+int     conv_d(int par);
+int     conv_i(int par);
+int     conv_u(unsigned int par);
+int     conv_x(unsigned int par, char *base);
+int     conv_X(unsigned int par, char *base);
 
 #endif
