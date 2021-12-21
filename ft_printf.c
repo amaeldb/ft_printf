@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 15:03:42 by ade-beta          #+#    #+#             */
-/*   Updated: 2021/12/16 16:30:55 by ade-beta         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:30:26 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int	to_base(long unsigned int i, char * base, unsigned int size)
+int	to_base(long unsigned int i, char *base, unsigned int size)
 {
 	int	count;
 
@@ -49,13 +49,13 @@ int	conv(const char c, va_list *par)
 	else if (c == 'd')
 		return (conv_d(va_arg(*par, int)));
 	else if (c == 'i')
-		return (conv_i(va_arg(*par,int)));
+		return (conv_i(va_arg(*par, int)));
 	else if (c == 'u')
 		return (conv_u(va_arg(*par, unsigned int)));
 	else if (c == 'x')
 		return (conv_x(va_arg(*par, unsigned int), "0123456789abcdef"));
 	else if (c == 'X')
-		return (conv_X(va_arg(*par, unsigned int), "0123456789ABCDEF"));
+		return (conv_bigx(va_arg(*par, unsigned int), "0123456789ABCDEF"));
 	write(1, "%", 1);
 	return (1);
 }
