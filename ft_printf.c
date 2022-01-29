@@ -60,12 +60,26 @@ int	conv(const char c, va_list *par)
 	return (1);
 }
 
+int	reduc(char str, va_list *par)
+{
+	int	count;
+
+	count = 0;
+	if (ft_strchr("cspdiuxX%", str))
+		count += conv(str, par);
+	else
+		count += conv_c((int)str);
+	return (count);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	va_list	*par;
 	int		i;
 	int		count;
 
+	if (!str)
+		return (0);
 	i = -1;
 	count = 0;
 	par = (va_list *)malloc(sizeof(va_list));
@@ -73,15 +87,12 @@ int	ft_printf(const char *str, ...)
 	while (str[++i])
 	{
 		if (str[i] == '%' && str[i + 1])
+			count += reduc(str[++i], par);
+		else
 		{
-			if (ft_strchr("cspdiuxX%", str[i + 1]))
-				count += conv(str[++i], par);
-			else
-				count += conv_c((int)str[++i]);
-			continue ;
+			write(1, &str[i], 1);
+			count++;
 		}
-		write(1, &str[i], 1);
-		count++;
 	}
 	va_end(*par);
 	free(par);
